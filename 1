@@ -1,0 +1,16 @@
+job ("MNTLAB-asvirina-main-build-job") {
+ 
+     parameters {
+         choiceParam('BRANCH_NAME', ['asvirina', 'master'], 'Branch name')
+         activeChoiceParam('Jobs') {
+             description('Select job')
+             choiceType('CHECKBOX')
+             groovyScript {
+                 script('''return ["MNTLAB-asvirina-child1-build-job",
+                         "MNTLAB-asvirina-child2-build-job",
+                         "MNTLAB-asvirina-child3-build-job",
+                         "MNTLAB-asvirina-child4-build-job"]''')
+             }
+         }
+     }
+    ... to be continued
