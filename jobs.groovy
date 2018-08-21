@@ -16,7 +16,7 @@ job ("MNTLAB-asvirina-main-build-job") {
 
 	 steps {
          downstreamParameterized {
-             trigger('$BUILDS_TRIGGER') {
+             trigger('MNTLAB-asvirina-child1-build-job, MNTLAB-asvirina-child2-build-job, MNTLAB-asvirina-child3-build-job, MNTLAB-asvirina-child4-build-job') {
                  block {
                      buildStepFailure('FAILURE')
                      failure('FAILURE')
@@ -54,11 +54,11 @@ return gettags.text.readLines().collect {
             }
 			steps {
                 shell('''bash script.sh > output.txt
-				tar -czf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy''')
+				tar -czf ${BRANCH_NAME}_dsl_script.tar.gz *''')
             }
 				publishers {
 					archiveArtifacts {
-						pattern('${BRANCH_NAME}_dsl_script.tar.gz')
+						pattern('**')
 						onlyIfSuccessful(false)
                     }
 				}
