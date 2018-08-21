@@ -1,4 +1,4 @@
-job ("MNTLAB-asvirina-main-build-job") {
+ job ("MNTLAB-asvirina-main-build-job") {
  
      parameters {
          choiceParam('BRANCH_NAME', ['asvirina', 'master'], 'Branch name')
@@ -16,7 +16,7 @@ job ("MNTLAB-asvirina-main-build-job") {
 
 	 steps {
          downstreamParameterized {
-             trigger('MNTLAB-asvirina-child1-build-job, MNTLAB-asvirina-child2-build-job, MNTLAB-asvirina-child3-build-job, MNTLAB-asvirina-child4-build-job') {
+             trigger('$BUILDS_TRIGGER') {
                  block {
                      buildStepFailure('FAILURE')
                      failure('FAILURE')
